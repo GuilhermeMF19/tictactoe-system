@@ -49,4 +49,51 @@ public class Board {
         
         showBoard();
     }
+	
+	public int checkLine(){
+        for(int line=0 ; line<3 ; line++){
+
+            if( (board[line][0] + board[line][1] + board[line][2]) == -3)
+                return -1;
+            if( (board[line][0] + board[line][1] + board[line][2]) == 3)
+                return 1;
+        }
+        
+        return 0;
+                
+    }
+	
+	public int checkColumn(){
+        for(int column=0 ; column<3 ; column++){
+
+            if( (board[0][column] + board[1][column] + board[2][column]) == -3)
+                return -1;
+            if( (board[0][column] + board[1][column] + board[2][column]) == 3)
+                return 1;
+        }
+        
+        return 0;
+                
+    }
+	
+	public int checkDiagonals(){
+        if( (board[0][0] + board[1][1] + board[2][2]) == -3)
+            return -1;
+        if( (board[0][0] + board[1][1] + board[2][2]) == 3)
+            return 1;
+        if( (board[0][2] + board[1][1] + board[2][0]) == -3)
+            return -1;
+        if( (board[0][2] + board[1][1] + board[2][0]) == 3)
+            return 1;
+        
+        return 0;
+    }
+	
+	public boolean completeBoard(){
+        for(int line=0 ; line<3 ; line++)
+            for(int column=0 ; column<3 ; column++)
+                if( board[line][column]==0 )
+                    return false;
+        return true;
+    }
 }
