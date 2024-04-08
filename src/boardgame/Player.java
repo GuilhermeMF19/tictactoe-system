@@ -10,9 +10,9 @@ public abstract class Player {
         this.player = player;
     }
     
-    public abstract void jogar(Board board);
+    public abstract void Play(Board board);
     
-    public abstract void Tentativa(Board board);
+    public abstract void Trying(Board board);
 
     public boolean checkTrying(int[] tentativa, Board board){
         if(board.getPosition(trying) == 0)
