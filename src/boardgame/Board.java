@@ -8,9 +8,10 @@ public class Board {
         clearScreen();
     }
 	
-	public static void clearScreen() {
-		System.out.print("\033[H\033[2J");
-		System.out.flush();
+	public void clearScreen() {
+		for(int line=0 ; line<3 ; line++)
+            for(int column=0 ; column<3 ; column++)
+                board[line][column]=0;
 	}
 	
 	public void showBoard(){

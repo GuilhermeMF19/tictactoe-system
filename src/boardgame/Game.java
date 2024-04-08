@@ -1,21 +1,20 @@
 package boardgame;
 
 import java.util.Scanner;
-import boardgame.Board;
 
 public class Game {
 
-	private Board tabuleiro;
-    private int rodada=1, vez=1;
-    private Player jogador1;
-    private Player jogador2;
-    public Scanner entrada = new Scanner(System.in);
+	private Board board;
+    private int round=1, turn=1;
+    private Player player1;
+    private Player player2;
+    public Scanner sc = new Scanner(System.in);
     
     public Game(){
         board = new Board();
         initPlayers();
         
-        while( Play() );
+        while( Playing() );
     }
     
     public void initPlayers(){
@@ -42,7 +41,7 @@ public class Game {
             System.out.println("1. Humano");
             System.out.println("2. Computador\n");
             System.out.print("Opção: ");
-            option = entrada.nextInt();
+            option = sc.nextInt();
             
             if(option != 1 && option != 2)
                 System.out.println("Opção inválida! Tente novamente");
@@ -51,16 +50,16 @@ public class Game {
         return option;
     }
     
-    public boolean Jogar(){
+    public boolean Playing(){
         if(winner() == 0 ){
             System.out.println("----------------------");
             System.out.println("\nRodada "+ round);
             System.out.println("É a vez do jogador " + turn() );
             
             if(turn()==1)
-                player1.play(board);
+                player1.Play(board);
             else
-                player2.play(board);
+                player2.Play(board);
             
             
             if(board.completeBoard()){
@@ -90,18 +89,18 @@ public class Game {
     }
     
     public int winner(){
-        if(tabuleiro.checkLine() == 1)
+        if(board.checkLine() == 1)
             return 1;
-        if(tabuleiro.checkColumn() == 1)
+        if(board.checkColumn() == 1)
             return 1;
-        if(tabuleiro.checkDiagonals() == 1)
+        if(board.checkDiagonals() == 1)
             return 1;
         
-        if(tabuleiro.checkLine() == -1)
+        if(board.checkLine() == -1)
             return -1;
-        if(tabuleiro.checkColumn() == -1)
+        if(board.checkColumn() == -1)
             return -1;
-        if(tabuleiro.checkDiagonals() == -1)
+        if(board.checkDiagonals() == -1)
             return -1;
         
         return 0;
