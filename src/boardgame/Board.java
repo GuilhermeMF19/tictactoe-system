@@ -43,12 +43,16 @@ public class Board {
     }
 	
 	public void setPosition(int[] trying, int player){
-        if(player == 1)
-        	board[trying[0]][trying[1]] = -1;
-        else
-        	board[trying[0]][trying[1]] = 1;
-        
-        showBoard();
+		try {
+	        if (player == 1)
+	            board[trying[0]][trying[1]] = -1;
+	        else
+	            board[trying[0]][trying[1]] = 1;
+
+	        showBoard();
+	    } catch (ArrayIndexOutOfBoundsException e) {
+	        System.out.println("Erro: Índices inválidos. Certifique-se de que os índices fornecidos estão dentro dos limites do tabuleiro.");
+	    }
     }
 	
 	public int checkLine(){

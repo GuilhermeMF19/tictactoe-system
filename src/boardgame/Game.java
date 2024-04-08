@@ -1,5 +1,6 @@
 package boardgame;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
@@ -38,13 +39,18 @@ public class Game {
         int option=0;
         
         do{
-            System.out.println("1. Humano");
-            System.out.println("2. Computador\n");
-            System.out.print("Opção: ");
-            option = sc.nextInt();
-            
-            if(option != 1 && option != 2)
+        	try {
+                System.out.println("1. Humano");
+                System.out.println("2. Computador\n");
+                System.out.print("Opção: ");
+                option = sc.nextInt();
+                
+                if(option != 1 && option != 2)
+                    throw new InputMismatchException();
+            } catch (InputMismatchException e) {
                 System.out.println("Opção inválida! Tente novamente");
+                sc.nextLine();
+            }
         }while(option != 1 && option != 2);
         
         return option;
